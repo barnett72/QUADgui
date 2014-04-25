@@ -7,8 +7,10 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    // Voltage
-    ui->lcdNumber_volts->display(12.34);
+    // Voltage Total
+    ui->label_batteryTotal->setText("15.62");
+    // Voltage lowest cell
+    ui->label_batteryLowCell->setText("3.87");
     // Battery remaining
     ui->progressBar_battery->setValue(98);
     // Time in flight
@@ -20,9 +22,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->label_throttleValue->setText("98%");
 
     // Distance value
-    ui->label_distance->setText("199.9'");
+    ui->label_distance->setText("888.8'");
     // Height above ground
-    ui->label_height->setText("19.9'");
+    ui->label_height->setText("18.8'");
 
     // Set LED1 on
     ui->radioButton_led1->setChecked(true);

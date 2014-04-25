@@ -45,7 +45,7 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>52</y>
+        <y>54</y>
         <width>150</width>
         <height>23</height>
        </rect>
@@ -54,61 +54,11 @@
        <number>70</number>
       </property>
      </widget>
-     <widget class="QLabel" name="label_voltsText">
-      <property name="geometry">
-       <rect>
-        <x>120</x>
-        <y>10</y>
-        <width>41</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>32</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>v</string>
-      </property>
-     </widget>
-     <widget class="QLCDNumber" name="lcdNumber_volts">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>10</y>
-        <width>111</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>12</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="layoutDirection">
-       <enum>Qt::LeftToRight</enum>
-      </property>
-      <property name="autoFillBackground">
-       <bool>true</bool>
-      </property>
-      <property name="lineWidth">
-       <number>0</number>
-      </property>
-      <property name="smallDecimalPoint">
-       <bool>true</bool>
-      </property>
-      <property name="value" stdset="0">
-       <double>15.619999999999999</double>
-      </property>
-     </widget>
      <widget class="QLabel" name="label_timeText">
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>83</y>
+        <y>84</y>
         <width>51</width>
         <height>21</height>
        </rect>
@@ -126,25 +76,86 @@
       <property name="geometry">
        <rect>
         <x>80</x>
-        <y>82</y>
+        <y>83</y>
         <width>71</width>
         <height>21</height>
        </rect>
       </property>
       <property name="font">
        <font>
-        <pointsize>18</pointsize>
+        <pointsize>16</pointsize>
        </font>
       </property>
       <property name="text">
        <string>06:38</string>
       </property>
      </widget>
-     <zorder>lcdNumber_volts</zorder>
-     <zorder>progressBar_battery</zorder>
-     <zorder>label_voltsText</zorder>
-     <zorder>label_timeText</zorder>
-     <zorder>label_time</zorder>
+     <widget class="QLabel" name="label_batteryTotalLabel">
+      <property name="geometry">
+       <rect>
+        <x>33</x>
+        <y>4</y>
+        <width>30</width>
+        <height>15</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Total</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_batteryLowCellLabel">
+      <property name="geometry">
+       <rect>
+        <x>104</x>
+        <y>4</y>
+        <width>50</width>
+        <height>15</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Low Cell</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_batteryTotal">
+      <property name="geometry">
+       <rect>
+        <x>14</x>
+        <y>20</y>
+        <width>68</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>21</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>18.88</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_batteryLowCell">
+      <property name="geometry">
+       <rect>
+        <x>102</x>
+        <y>20</y>
+        <width>54</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>21</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>8.88</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QLabel" name="label_battery">
      <property name="geometry">
@@ -273,9 +284,9 @@
      <widget class="QLabel" name="label_height">
       <property name="geometry">
        <rect>
-        <x>90</x>
+        <x>100</x>
         <y>10</y>
-        <width>71</width>
+        <width>65</width>
         <height>31</height>
        </rect>
       </property>
