@@ -7,6 +7,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+
     // Voltage Total
     ui->label_batteryTotal->setText("15.62");
     // Voltage lowest cell
@@ -42,6 +43,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->label_latitude->setText("W 99° 99' 9.999");
     // speed
     ui->label_speed->setText("99.99 kn @ 999.9°");
+
+    ui->plainTextEdit->insertPlainText("This is text\nAnother line of it\n\nAnd another");
 
 }
 
