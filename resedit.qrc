@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/new/Myresource">
+        <file>quad_textboxLogo.png</file>
+    </qresource>
+</RCC>

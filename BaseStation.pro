@@ -18,3 +18,9 @@ SOURCES += main.cpp\
 HEADERS  += mainwindow.h
 
 FORMS    += mainwindow.ui
+
+OTHER_FILES += \
+    quad_textboxLogo.png
+
+RESOURCES += \
+    resedit.qrc
