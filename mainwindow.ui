@@ -677,6 +677,12 @@ from Takeoff</string>
       <property name="frameShadow">
        <enum>QFrame::Sunken</enum>
       </property>
+      <property name="verticalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOff</enum>
+      </property>
+      <property name="horizontalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOff</enum>
+      </property>
      </widget>
     </widget>
     <widget class="QLabel" name="label_direction">
@@ -907,7 +913,7 @@ from Takeoff</string>
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="label">
+     <widget class="QLabel" name="label_srv1">
       <property name="geometry">
        <rect>
         <x>0</x>
@@ -928,7 +934,7 @@ from Takeoff</string>
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="label_2">
+     <widget class="QLabel" name="label_srv2">
       <property name="geometry">
        <rect>
         <x>0</x>
@@ -949,7 +955,7 @@ from Takeoff</string>
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="label_3">
+     <widget class="QLabel" name="label_srvPan">
       <property name="geometry">
        <rect>
         <x>0</x>
@@ -970,7 +976,7 @@ from Takeoff</string>
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="label_4">
+     <widget class="QLabel" name="label_srvTilt">
       <property name="geometry">
        <rect>
         <x>0</x>
