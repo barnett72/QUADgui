@@ -418,6 +418,9 @@
         <bold>true</bold>
        </font>
       </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel { background-color : darkCyan; color : white; }</string>
+      </property>
       <property name="text">
        <string>19.6'</string>
       </property>
@@ -438,6 +441,9 @@
        <font>
         <pointsize>14</pointsize>
        </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel { background-color : darkCyan; color : white; }</string>
       </property>
       <property name="text">
        <string>Height</string>
@@ -462,6 +468,9 @@
         <bold>true</bold>
        </font>
       </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel { background-color : darkBlue; color : white; }</string>
+      </property>
       <property name="text">
        <string>117'</string>
       </property>
@@ -482,6 +491,9 @@
        <font>
         <pointsize>14</pointsize>
        </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel { background-color : darkBlue; color : white; }</string>
       </property>
       <property name="text">
        <string>Distance

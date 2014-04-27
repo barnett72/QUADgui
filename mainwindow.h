@@ -44,6 +44,9 @@ public slots:
     void SetPan(std::string val);
     void SetTilt(std::string val);
     void AddStringToMsgCenter(std::string msg);
+    void SetBatteryColorsGreen();
+    void SetBatteryColorsYellow();
+    void SetBatteryColorsRed();
 };
 
 #endif // MAINWINDOW_H

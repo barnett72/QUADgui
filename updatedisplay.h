@@ -31,6 +31,9 @@ signals:
     void onPanChanged(std::string val);
     void onTiltChanged(std::string val);
     void onMsgCenterChanged(std::string msg);
+    void onBatteryColorGreen(void);
+    void onBatteryColorYellow(void);
+    void onBatteryColorRed(void);
 public slots:
 
 };

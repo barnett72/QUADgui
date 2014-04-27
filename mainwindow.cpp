@@ -9,28 +9,33 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     updateDisplay = new UpdateDisplay(this);
+
+    connect(updateDisplay, SIGNAL(onTotalVoltageChanged(std::string)), this, SLOT(SetTotalVoltage(std::string)));
+    connect(updateDisplay, SIGNAL(onLowCellVoltageChanged(std::string)), this, SLOT(SetLowCellVoltage(std::string)));
+    connect(updateDisplay, SIGNAL(onLongitudeChanged(std::string)), this, SLOT(SetLongitude(std::string)));
+    connect(updateDisplay, SIGNAL(onLatitdueChanged(std::string)), this, SLOT(SetLatitude(std::string)));
+    connect(updateDisplay, SIGNAL(onSpeedChanged(std::string)), this, SLOT(SetSpeed(std::string)));
+    connect(updateDisplay, SIGNAL(onDirectionChanged(std::string)), this, SLOT(SetDirection(std::string)));
+    connect(updateDisplay, SIGNAL(onRemainingTimeChanged(std::string)), this, SLOT(SetRemainingTime(std::string)));
+    connect(updateDisplay, SIGNAL(onFlightTimeChanged(std::string)), this, SLOT(SetFlightTime(std::string)));
+    connect(updateDisplay, SIGNAL(onBatteryRemainingChanged(int)), this, SLOT(SetBatteryRemaining(int)));
+    connect(updateDisplay, SIGNAL(onThrottleChanged(std::string)), this, SLOT(SetThrottle(std::string)));
+    connect(updateDisplay, SIGNAL(onDistanceChanged(std::string)), this, SLOT(SetDistance(std::string)));
+    connect(updateDisplay, SIGNAL(onHeightChanged(std::string)), this, SLOT(SetHeight(std::string)));
+    connect(updateDisplay, SIGNAL(onLed1Changed(bool)), this, SLOT(SetLed1(bool)));
+    connect(updateDisplay, SIGNAL(onLed2Changed(bool)), this, SLOT(SetLed2(bool)));
+    connect(updateDisplay, SIGNAL(onSrv1Changed(std::string)), this, SLOT(SetSrv1(std::string)));
+    connect(updateDisplay, SIGNAL(onSrv2Changed(std::string)), this, SLOT(SetSrv2(std::string)));
+    connect(updateDisplay, SIGNAL(onPanChanged(std::string)), this, SLOT(SetPan(std::string)));
+    connect(updateDisplay, SIGNAL(onTiltChanged(std::string)), this, SLOT(SetTilt(std::string)));
     connect(updateDisplay, SIGNAL(onMsgCenterChanged(std::string)), this, SLOT(AddStringToMsgCenter(std::string)));
+    connect(updateDisplay, SIGNAL(onBatteryColorGreen()), this, SLOT(SetBatteryColorsGreen()));
+    connect(updateDisplay, SIGNAL(onBatteryColorYellow()), this, SLOT(SetBatteryColorsYellow()));
+    connect(updateDisplay, SIGNAL(onBatteryColorRed()), this, SLOT(SetBatteryColorsRed()));
 
     updateDisplay->start();
 
-
     vectorIndex = 0;
-
-    // Init for stuffs that isn't values
-    ui->label_batteryTotal->setStyleSheet("QLabel { background-color : darkGreen; color : white; }");
-    ui->label_batteryTotalLabel->setStyleSheet("QLabel { background-color : darkGreen; color : white; }");
-
-    ui->label_batteryLowCell->setStyleSheet("QLabel { background-color : green; color : white; }");
-    ui->label_batteryLowCellLabel->setStyleSheet("QLabel { background-color : green; color : white; }");
-
-    ui->label_timeRemaining->setStyleSheet("QLabel { background-color : green; color : white; }");
-    ui->label_timeRemainingLabel->setStyleSheet("QLabel { background-color : green; color : white; }");
-
-    ui->label_distance->setStyleSheet("QLabel { background-color : darkBlue; color : white; }");
-    ui->label_distanceText->setStyleSheet("QLabel { background-color : darkBlue; color : white; }");
-
-    ui->label_height->setStyleSheet("QLabel { background-color : darkCyan; color : white; }");
-    ui->label_heightText->setStyleSheet("QLabel { background-color : darkCyan; color : white; }");
 
     ui->messageCenter->viewport()->setAutoFillBackground(false);
 }
@@ -153,4 +158,42 @@ void MainWindow::AddStringToMsgCenter(std::string msg)
         }
     }
     vectorIndex++;
+    if(vectorIndex == (NUM_ROWS*100))
+        vectorIndex = 0;
+}
+
+void MainWindow::SetBatteryColorsGreen()
+{
+    ui->label_batteryTotal->setStyleSheet("QLabel { background-color : darkGreen; color : white; }");
+    ui->label_batteryTotalLabel->setStyleSheet("QLabel { background-color : darkGreen; color : white; }");
+
+    ui->label_batteryLowCell->setStyleSheet("QLabel { background-color : green; color : white; }");
+    ui->label_batteryLowCellLabel->setStyleSheet("QLabel { background-color : green; color : white; }");
+
+    ui->label_timeRemaining->setStyleSheet("QLabel { background-color : green; color : white; }");
+    ui->label_timeRemainingLabel->setStyleSheet("QLabel { background-color : green; color : white; }");
+}
+
+void MainWindow::SetBatteryColorsYellow()
+{
+    ui->label_batteryTotal->setStyleSheet("QLabel { background-color : #D0D000; color : black; }");
+    ui->label_batteryTotalLabel->setStyleSheet("QLabel { background-color : #D0D000; color : black; }");
+
+    ui->label_batteryLowCell->setStyleSheet("QLabel { background-color : yellow; color : black; }");
+    ui->label_batteryLowCellLabel->setStyleSheet("QLabel { background-color : yellow; color : black; }");
+
+    ui->label_timeRemaining->setStyleSheet("QLabel { background-color : yellow; color : black; }");
+    ui->label_timeRemainingLabel->setStyleSheet("QLabel { background-color : yellow; color : black; }");
+}
+
+void MainWindow::SetBatteryColorsRed()
+{
+    ui->label_batteryTotal->setStyleSheet("QLabel { background-color : darkRed; color : white; }");
+    ui->label_batteryTotalLabel->setStyleSheet("QLabel { background-color : darkRed; color : white; }");
+
+    ui->label_batteryLowCell->setStyleSheet("QLabel { background-color : red; color : white; }");
+    ui->label_batteryLowCellLabel->setStyleSheet("QLabel { background-color : red; color : white; }");
+
+    ui->label_timeRemaining->setStyleSheet("QLabel { background-color : red; color : white; }");
+    ui->label_timeRemainingLabel->setStyleSheet("QLabel { background-color : red; color : white; }");
 }
