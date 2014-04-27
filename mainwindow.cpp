@@ -1,11 +1,18 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "updatedisplay.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    updateDisplay = new UpdateDisplay(this);
+    connect(updateDisplay, SIGNAL(onMsgCenterChanged(std::string)), this, SLOT(AddStringToMsgCenter(std::string)));
+
+    updateDisplay->start();
+
 
     vectorIndex = 0;
 
@@ -80,14 +87,10 @@ void MainWindow::SetBatteryRemaining(int percent)
     ui->progressBar_battery->setValue(percent);
 }
 
-void MainWindow::SetThrottleLabel(std::string val)
+void MainWindow::SetThrottle(std::string val)
 {
     ui->label_throttleValue->setText(QString::fromStdString(val));
-}
-
-void MainWindow::SetThrottleBarValue(int val)
-{
-    ui->progressBar_throttle->setValue(val);
+    ui->progressBar_throttle->setValue(atoi(val.c_str()));
 }
 
 void MainWindow::SetDistance(std::string distance)
