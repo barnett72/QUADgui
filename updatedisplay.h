@@ -3,6 +3,15 @@
 
 #include <QThread>
 #include <QtCore>
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <string>
+#include <algorithm>
+#include <iterator>
+#include <vector>
+#include <dirent.h>
+#include <stdio.h>
 
 class UpdateDisplay : public QThread
 {
