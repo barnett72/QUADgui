@@ -52,17 +52,30 @@ void MainWindow::SetTotalVoltage(std::string voltage)
 
 void MainWindow::SetLowCellVoltage(std::string voltage)
 {
+    double cellVoltage = atof(voltage.c_str());
+    if(cellVoltage > 3.6)
+    {
+        SetBatteryColorsGreen();
+    }
+    else if(cellVoltage > 3.4)
+    {
+        SetBatteryColorsYellow();
+    }
+    else
+    {
+        SetBatteryColorsRed();
+    }
     ui->label_batteryLowCell->setText(QString::fromStdString(voltage));
 }
 
 void MainWindow::SetLongitude(std::string longitude)
 {
-    ui->label_longitude->setText(QString::fromStdString(longitude));
+    ui->label_longitude->setText(QString::fromUtf8(longitude.c_str()));
 }
 
 void MainWindow::SetLatitude(std::string latitude)
 {
-    ui->label_latitude->setText(QString::fromStdString(latitude));
+    ui->label_latitude->setText(QString::fromUtf8(latitude.c_str()));
 }
 
 void MainWindow::SetSpeed(std::string speed)
@@ -94,18 +107,18 @@ void MainWindow::SetBatteryRemaining(int percent)
 
 void MainWindow::SetThrottle(std::string val)
 {
-    ui->label_throttleValue->setText(QString::fromStdString(val));
+    ui->label_throttleValue->setText(QString::fromStdString(val) + "%");
     ui->progressBar_throttle->setValue(atoi(val.c_str()));
 }
 
 void MainWindow::SetDistance(std::string distance)
 {
-    ui->label_distance->setText(QString::fromStdString(distance));
+    ui->label_distance->setText(QString::fromStdString(distance) + "'");
 }
 
 void MainWindow::SetHeight(std::string height)
 {
-     ui->label_height->setText(QString::fromStdString(height));
+     ui->label_height->setText(QString::fromStdString(height) + "'");
 }
 
 void MainWindow::SetLed1(bool onOff)
@@ -120,22 +133,22 @@ void MainWindow::SetLed2(bool onOff)
 
 void MainWindow::SetSrv1(std::string val)
 {
-    ui->label_srv1->setText(QString::fromStdString(val));
+    ui->label_srv1->setText(QString::fromStdString(val) + "%");
 }
 
 void MainWindow::SetSrv2(std::string val)
 {
-    ui->label_srv2->setText(QString::fromStdString(val));
+    ui->label_srv2->setText(QString::fromStdString(val) + "%");
 }
 
 void MainWindow::SetPan(std::string val)
 {
-    ui->label_srvPan->setText(QString::fromStdString(val));
+    ui->label_srvPan->setText(QString::fromStdString(val) + "%");
 }
 
 void MainWindow::SetTilt(std::string val)
 {
-    ui->label_srvTilt->setText(QString::fromStdString(val));
+    ui->label_srvTilt->setText(QString::fromStdString(val) + "%");
 }
 
 void MainWindow::AddStringToMsgCenter(std::string msg)

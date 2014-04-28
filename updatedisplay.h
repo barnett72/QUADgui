@@ -12,6 +12,13 @@
 #include <vector>
 #include <dirent.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <errno.h>
+#include <sys/types.h>
+#include <sys/inotify.h>
+
+#define EVENT_SIZE (sizeof (struct inotify_event))
+#define BUF_LEN (1024 * (EVENT_SIZE + 16))
 
 class UpdateDisplay : public QThread
 {
@@ -43,8 +50,9 @@ signals:
     void onBatteryColorGreen(void);
     void onBatteryColorYellow(void);
     void onBatteryColorRed(void);
-public slots:
-
+private:
+    int length, i, fd, wd;
+    char buffer[BUF_LEN];
 };
 
 #endif // UPDATEDISPLAY_H

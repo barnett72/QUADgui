@@ -12,28 +12,50 @@ UpdateDisplay::UpdateDisplay(QObject *parent) :
 void UpdateDisplay::run()
 {
 
-    const char * directory = "/home/matt/workspace/networking/read/files";
-    DIR* dir;
-    dirent* pdir;
+    length = 0;
+    i = 0;
+    const char * directory = "/receive";
     string file;
     bool isValidFile = false;
 
+    fd = inotify_init();
+    if(fd < 0)
+    {
+        onMsgCenterChanged("inotify_init error");
+    }
+
+    wd = inotify_add_watch(fd, directory, IN_CREATE);
+
+
     while(1)
     {
-        dir = opendir(directory);
-        while((pdir = readdir(dir)))
+        length = read(fd, buffer, BUF_LEN);
+        if(length < 0)
         {
-            file = pdir->d_name;
-            if(file.size() > 2)
-            {
-                isValidFile = true;
-                break;
-            }
+            onMsgCenterChanged("read error");
         }
-        closedir(dir);
+        i=0;
+
+        while(i < length)
+        {
+            struct inotify_event *event = (struct inotify_event *) &buffer[i];
+            if(event->len)
+            {
+                if(event->mask & IN_CREATE)
+                {
+                    if(!(event->mask & IN_ISDIR))
+                    {
+                        file = event->name;
+                        isValidFile = true;
+                    }
+                }
+            }
+            i += EVENT_SIZE + event->len;
+        }
 
         if(isValidFile)
         {
+            usleep(100000); // i really didn't wan't to do this :(
             string filePath = string(directory) + "/" + file;
 
             string line;
@@ -48,8 +70,6 @@ void UpdateDisplay::run()
                 {
                     if(!isReadingMsg)
                     {
-
-                        //cout << line;
                         istringstream iss(line);
                         vector<string> strings;
                         copy(std::istream_iterator<std::string>(iss),
@@ -180,4 +200,6 @@ void UpdateDisplay::run()
             }
         }
     }
+    (void) inotify_rm_watch(fd, wd);
+    (void) close(fd);
 }
