@@ -17,8 +17,11 @@
 #include <sys/types.h>
 #include <sys/inotify.h>
 
+#include "receiver.h"
+
 #define EVENT_SIZE (sizeof (struct inotify_event))
 #define BUF_LEN (1024 * (EVENT_SIZE + 16))
+#define LINE_LEN 256
 
 class UpdateDisplay : public QThread
 {

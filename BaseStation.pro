@@ -14,10 +14,12 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    updatedisplay.cpp
+    updatedisplay.cpp \
+    receiver.cpp
 
 HEADERS  += mainwindow.h \
-    updatedisplay.h
+    updatedisplay.h \
+    receiver.h
 
 FORMS    += mainwindow.ui
 

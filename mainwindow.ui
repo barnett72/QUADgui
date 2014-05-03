@@ -57,7 +57,7 @@
        </rect>
       </property>
       <property name="value">
-       <number>70</number>
+       <number>43</number>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -102,7 +102,7 @@
        <enum>Qt::RightToLeft</enum>
       </property>
       <property name="text">
-       <string>06:38</string>
+       <string>88:88</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -170,7 +170,7 @@
        <bool>false</bool>
       </property>
       <property name="text">
-       <string>18.88</string>
+       <string>88.88</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -256,7 +256,7 @@
        <enum>Qt::LeftToRight</enum>
       </property>
       <property name="text">
-       <string>6:38</string>
+       <string>88:88</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -370,7 +370,7 @@
        </font>
       </property>
       <property name="text">
-       <string>54%</string>
+       <string>88%</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -422,7 +422,7 @@
        <string notr="true">QLabel { background-color : darkCyan; color : white; }</string>
       </property>
       <property name="text">
-       <string>19.6'</string>
+       <string>88.8'</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -472,7 +472,7 @@
        <string notr="true">QLabel { background-color : darkBlue; color : white; }</string>
       </property>
       <property name="text">
-       <string>117'</string>
+       <string>888'</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -567,7 +567,7 @@ from Takeoff</string>
        </font>
       </property>
       <property name="text">
-       <string>N 43° 2' 29.71&quot;</string>
+       <string>N 88° 88' 88.88&quot;</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -590,7 +590,7 @@ from Takeoff</string>
        </font>
       </property>
       <property name="text">
-       <string>W 87° 54' 9.993&quot;</string>
+       <string>W 88° 88' 88.88&quot;</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -613,7 +613,7 @@ from Takeoff</string>
        </font>
       </property>
       <property name="text">
-       <string>0.72 kn @ 161.2°</string>
+       <string>8.88 kn @ 888.8°</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -680,6 +680,7 @@ from Takeoff</string>
       </property>
       <property name="font">
        <font>
+        <family>Courier 10 Pitch</family>
         <pointsize>16</pointsize>
        </font>
       </property>
@@ -940,7 +941,7 @@ from Takeoff</string>
        </font>
       </property>
       <property name="text">
-       <string>100%</string>
+       <string>888%</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -961,7 +962,7 @@ from Takeoff</string>
        </font>
       </property>
       <property name="text">
-       <string>100%</string>
+       <string>888%</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -982,7 +983,7 @@ from Takeoff</string>
        </font>
       </property>
       <property name="text">
-       <string>100%</string>
+       <string>888%</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -1003,7 +1004,7 @@ from Takeoff</string>
        </font>
       </property>
       <property name="text">
-       <string>100%</string>
+       <string>888%</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
