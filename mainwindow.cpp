@@ -8,6 +8,9 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    speed = "0.0";
+    direction = "---";
+
     updateDisplay = new UpdateDisplay(this);
 
     connect(updateDisplay, SIGNAL(onTotalVoltageChanged(std::string)), this, SLOT(SetTotalVoltage(std::string)));
@@ -81,13 +84,13 @@ void MainWindow::SetLatitude(std::string latitude)
 void MainWindow::SetSpeed(std::string speed)
 {
     this->speed = speed;
-    ui->label_speed->setText(QString::fromStdString(speed + "kn @ " + direction + "°"));
+    ui->label_speed->setText(QString::fromUtf8(getSpeedDirText(speed, direction).c_str()));
 }
 
 void MainWindow::SetDirection(std::string direction)
 {
     this->direction = direction;
-    ui->label_speed->setText(QString::fromStdString(speed + "kn @ " + direction + "°"));
+    ui->label_speed->setText(QString::fromUtf8(getSpeedDirText(speed, direction).c_str()));
 }
 
 void MainWindow::SetRemainingTime(std::string time)
@@ -173,6 +176,12 @@ void MainWindow::AddStringToMsgCenter(std::string msg)
     vectorIndex++;
     if(vectorIndex == (NUM_ROWS*100))
         vectorIndex = 0;
+}
+
+std::string MainWindow::getSpeedDirText(std::string speed, std::string direction)
+{
+    std::string str = speed + "kn @ " + direction + "°";
+    return str;
 }
 
 void MainWindow::SetBatteryColorsGreen()

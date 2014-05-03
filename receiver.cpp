@@ -28,7 +28,7 @@ std::string Receiver::getLine()
         //std::cout << "char rcvd: " << c << std::endl;
         if(c=='\n')
             isReadingLine = false;
-        else
+        else if(c < 255)
             str += c;
     }
     //std::cout << "returning string: '" << str << "'" << std::endl;

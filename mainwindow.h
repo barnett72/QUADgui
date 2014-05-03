@@ -22,6 +22,7 @@ private:
     Ui::MainWindow *ui;
     std::string speed;
     std::string direction;
+    std::string getSpeedDirText(std::string speed, std::string direction);
     QVector<QString> msgCenterText;
     int vectorIndex;
 public slots:
