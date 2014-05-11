@@ -6,6 +6,20 @@ UpdateDisplay::UpdateDisplay(QObject *parent) :
     QThread(parent)
 {
     qRegisterMetaType<std::string>("std::string");
+    qRegisterMetaType<uint32_t>("uint32_t");
+
+    lowCellV = 0.0;
+    totalV = 0.0;
+    startVoltage = 0.0;
+    startTime = 0;
+    throttle = 0;
+    totalTime = 0;
+
+    isFlying = false;
+
+    ft = new flighttime(this);
+    connect(ft, SIGNAL(onUpdateFlightTime(uint32_t)), this, SLOT(SetFlightTime(uint32_t)));
+    ft->start();
 }
 
 
@@ -15,7 +29,7 @@ void UpdateDisplay::run()
 
     bool isReadingMsg = false;
     int messageLength = 0;
-    int messageLineIndex = 0;
+    int messageLineIndex = 0;    
 
     bool isValidLine;
     int size;
@@ -60,14 +74,17 @@ void UpdateDisplay::run()
                     else if(s == "tot")
                     {
                         emit onTotalVoltageChanged(strings.at(1));
+                        totalV = atof(strings.at(1).c_str());
                     }
                     else if(s == "lcv")
                     {
                         emit onLowCellVoltageChanged(strings.at(1));
+                        lowCellV = atof(strings.at(1).c_str());
                     }
                     else if(s == "thr")
                     {
                         emit onThrottleChanged(strings.at(1));
+                        throttle = atoi(strings.at(1).c_str());
                     }
                     else if(s == "spd")
                     {
@@ -166,4 +183,42 @@ void UpdateDisplay::run()
             }
         }
     }
+}
+
+
+void UpdateDisplay::SetFlightTime(uint32_t time)
+{
+    if(!isFlying && (throttle > 40))
+    {
+       startTime = time;
+       totalTime++;
+       startVoltage = totalV;
+       isFlying = true;
+    }
+    if(isFlying)
+    {
+        emit onFlightTimeChanged(formatTime(totalTime++));
+        int diff = time - startTime;
+        if(diff > 10)
+        {
+            int timeLeft = (int)(diff/(abs(startVoltage - totalV)))*(totalV - 13.8);
+            emit onRemainingTimeChanged(formatTime(timeLeft));
+            int remaining = (int)(timeLeft / (timeLeft + totalTime))*100;
+            emit onBatteryRemainingChanged(remaining);
+        }
+
+    }
+    if(throttle < 20)
+    {
+        isFlying = false;
+    }
+}
+
+std::string UpdateDisplay::formatTime(int seconds)
+{
+    int hours = (int)(seconds / 3600);
+    int minutes = (int)((seconds % 3600) / 60);
+    int secs = (int)(seconds % 60);
+    QTime time(hours, minutes, secs);
+    return time.toString("mm:ss").toUtf8().constData();
 }

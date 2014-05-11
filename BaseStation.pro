@@ -15,11 +15,13 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     updatedisplay.cpp \
-    receiver.cpp
+    receiver.cpp \
+    flighttime.cpp
 
 HEADERS  += mainwindow.h \
     updatedisplay.h \
-    receiver.h
+    receiver.h \
+    flighttime.h
 
 FORMS    += mainwindow.ui
 

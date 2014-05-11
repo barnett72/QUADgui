@@ -16,8 +16,10 @@
 #include <errno.h>
 #include <sys/types.h>
 #include <sys/inotify.h>
+#include <cmath>
 
 #include "receiver.h"
+#include "flighttime.h"
 
 #define EVENT_SIZE (sizeof (struct inotify_event))
 #define BUF_LEN (1024 * (EVENT_SIZE + 16))
@@ -30,6 +32,7 @@ public:
     explicit UpdateDisplay(QObject *parent = 0);
     void run();
     bool Stop;
+    flighttime *ft;
 signals:
     void onTotalVoltageChanged(std::string voltage);
     void onLowCellVoltageChanged(std::string voltage);
@@ -53,9 +56,16 @@ signals:
     void onBatteryColorGreen(void);
     void onBatteryColorYellow(void);
     void onBatteryColorRed(void);
+public slots:
+    void SetFlightTime(uint32_t time);
 private:
     int length, i, fd, wd;
     char buffer[BUF_LEN];
+    double lowCellV, totalV, startVoltage;
+    int startTime, throttle, totalTime;
+    bool isFlying;
+
+    std::string formatTime(int seconds);
 };
 
 #endif // UPDATEDISPLAY_H
