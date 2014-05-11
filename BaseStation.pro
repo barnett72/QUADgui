@@ -30,3 +30,5 @@ OTHER_FILES += \
 
 RESOURCES += \
     resedit.qrc
+
+CONFIG += debug

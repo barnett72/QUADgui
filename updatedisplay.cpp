@@ -15,6 +15,9 @@ UpdateDisplay::UpdateDisplay(QObject *parent) :
     throttle = 0;
     totalTime = 0;
 
+    timeLeft = 0;
+    remaining = 0;
+
     isFlying = false;
 
     ft = new flighttime(this);
@@ -169,6 +172,7 @@ void UpdateDisplay::run()
                     onMsgCenterChanged(line);
                     onMsgCenterChanged("Err Parsing Line:");
                 }
+
             }
         }
         else
@@ -199,14 +203,27 @@ void UpdateDisplay::SetFlightTime(uint32_t time)
     {
         emit onFlightTimeChanged(formatTime(totalTime++));
         int diff = time - startTime;
-        if(diff > 10)
+        if(diff >= SUM_ARRAY_LEN)
         {
-            int timeLeft = (int)(diff/(abs(startVoltage - totalV)))*(totalV - 13.8);
-            emit onRemainingTimeChanged(formatTime(timeLeft));
-            int remaining = (int)(timeLeft / (timeLeft + totalTime))*100;
-            emit onBatteryRemainingChanged(remaining);
+            if((diff % SUM_ARRAY_LEN) == 0)
+            {
+                double sum = 0;
+                for(int i=0; i<SUM_ARRAY_LEN; i++)
+                {
+                    sum += vAvg[i];
+                }
+                double avgV = sum / SUM_ARRAY_LEN;
+                timeLeft = (int)(diff/(abs(startVoltage - avgV)))*(avgV - 13.8);
+                emit onRemainingTimeChanged(formatTime(timeLeft));
+                remaining = (int)((double)(timeLeft / (timeLeft + totalTime))*100.0);
+                emit onBatteryRemainingChanged(remaining);
+            }
+            else
+            {
+                emit onRemainingTimeChanged(formatTime(--timeLeft));
+            }
         }
-
+        vAvg[diff % SUM_ARRAY_LEN] = totalV;
     }
     if(throttle < 20)
     {

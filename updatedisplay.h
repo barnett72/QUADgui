@@ -24,6 +24,7 @@
 #define EVENT_SIZE (sizeof (struct inotify_event))
 #define BUF_LEN (1024 * (EVENT_SIZE + 16))
 #define LINE_LEN 256
+#define SUM_ARRAY_LEN 10
 
 class UpdateDisplay : public QThread
 {
@@ -64,7 +65,8 @@ private:
     double lowCellV, totalV, startVoltage;
     int startTime, throttle, totalTime;
     bool isFlying;
-
+    int timeLeft, remaining;
+    double vAvg[SUM_ARRAY_LEN];
     std::string formatTime(int seconds);
 };
 

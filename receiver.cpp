@@ -31,6 +31,7 @@ std::string Receiver::getLine()
         else if((c >= 32) && (c <= 126))
             str += c;
     }
+    std::cout << str << std::endl;
     //std::cout << "returning string: '" << str << "'" << std::endl;
     return str;
 }
